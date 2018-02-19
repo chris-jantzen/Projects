@@ -22,7 +22,8 @@ function postTweet(txt) {
   T.post('statuses/update', tweet, (err, data, response) => {
     if (err) {
       console.log("Error has occured");
-    } else {
+    }
+    else {
       console.log("Tweet Posted");
     }
   });
