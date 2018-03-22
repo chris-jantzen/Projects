@@ -1,0 +1,4 @@
+habitat=20000
+food=10000
+colony=10000
+rarePepeCollection=1001
