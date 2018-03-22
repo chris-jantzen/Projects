@@ -4,19 +4,6 @@ import java.util.ArrayList;
 import java.io.File;
 
 public class Simulation {
-//    public static void main(String[] args) throws FileNotFoundException {
-//        ArrayList<Item> items = populateFromFile();
-//
-//        ArrayList<Rocket> rocket1 = loadU1(items);
-//        ArrayList<Rocket> rocket2 = loadU2(items);
-//
-//        for (Rocket i: rocket1) {
-//            System.out.printf("%s\n", i.currentWeight);
-//        }
-//        int price = runSimulation(rocket1);
-//        System.out.println(price);
-//    }
-
     public int runSimulation(ArrayList<Rocket> rockets) {
         int numRockets = rockets.size();
         int index = 0;
@@ -44,7 +31,8 @@ public class Simulation {
         else return 0;
     }
 
-    public ArrayList<Rocket> loadU2 (ArrayList<Item> items) {
+    public ArrayList<Rocket> loadU2 (File file) throws FileNotFoundException {
+        ArrayList<Item> items = populateFromFile(file);
         ArrayList<Rocket> rocket = new ArrayList<>();
         rocket.add(new U2());
         int index = 0;
@@ -74,7 +62,8 @@ public class Simulation {
         return rocket;
     }
 
-    public ArrayList<Rocket> loadU1 (ArrayList<Item> items) {
+    public ArrayList<Rocket> loadU1 (File file) throws FileNotFoundException {
+        ArrayList<Item> items = populateFromFile(file);
         ArrayList<Rocket> rocket = new ArrayList<>();
         rocket.add(new U1());
         int index = 0;
@@ -104,7 +93,7 @@ public class Simulation {
         return rocket;
     }
 
-    public ArrayList<Item> populateFromFile(File file) throws FileNotFoundException {
+    private static ArrayList<Item> populateFromFile(File file) throws FileNotFoundException {
         Scanner scan = null;
         ArrayList<String> object = new ArrayList<String>();
         ArrayList<String> mass = new ArrayList<String>();
@@ -122,7 +111,7 @@ public class Simulation {
         return populateItemArray(object, mass);
     }
 
-    private ArrayList<Integer> getIntegerArray(ArrayList<String> mass) {
+    private static ArrayList<Integer> getIntegerArray(ArrayList<String> mass) {
         ArrayList<Integer> result = new ArrayList<Integer>();
         for (String i : mass) {
             result.add(Integer.parseInt(i.trim()));
@@ -130,7 +119,7 @@ public class Simulation {
         return result;
     }
 
-    private ArrayList<Item> populateItemArray(ArrayList<String> item, ArrayList<String> sMass) {
+    private static ArrayList<Item> populateItemArray(ArrayList<String> item, ArrayList<String> sMass) {
         ArrayList<Integer> mass = getIntegerArray(sMass);
         ArrayList<Item> items = new ArrayList<Item>();
         for (int i=0; i<item.size(); i++) {
